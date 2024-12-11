@@ -60,7 +60,7 @@ const config: Config = {
   },
   // TODO
   // plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;
