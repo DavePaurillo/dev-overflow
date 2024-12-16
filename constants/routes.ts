@@ -9,6 +9,7 @@ const ROUTES = {
   // TAGS: "/tags",
   PROFILE: (id: string) => `/profile/${id}`,
   // PROFILE: "/profile",
+  QUESTION: (id: string) => `/question/${id}`,
   ASK_QUESTION: "/ask-a-question",
 };
 

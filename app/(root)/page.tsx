@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,6 @@ const questions = [
   {
     _id: "1",
     title: "How to learn react",
-    description: "I want to learn react, can someone help me with that?",
     tags: [
       { _id: "1", name: "react" },
       { _id: "2", name: "javascript" },
@@ -17,16 +17,17 @@ const questions = [
     author: {
       _id: "1",
       name: "John Doe",
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     upVotes: 10,
     answers: 5,
     views: 100,
-    createdAt: new Date(),
+    createdAt: new Date("2023-09-01"),
   },
   {
     _id: "2",
     title: "How to learn JavaScript",
-    description: "I want to learn react, can someone help me with that?",
     tags: [
       { _id: "1", name: "javascript" },
       { _id: "2", name: "javascript" },
@@ -34,11 +35,13 @@ const questions = [
     author: {
       _id: "1",
       name: "John Doe",
+      image:
+        "https://images.unsplash.com/photo-1515734674582-29010bb37906?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     upVotes: 10,
     answers: 5,
     views: 100,
-    createdAt: new Date(),
+    createdAt: new Date("2021-09-01"),
   },
 ];
 
@@ -79,7 +82,7 @@ async function Home({ searchParams }: SearchParams) {
       <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredQuestions.map((question) => {
-          return <h1 key={question._id}>{question.title}</h1>;
+          return <QuestionCard key={question._id} question={question} />;
         })}
       </div>
     </>

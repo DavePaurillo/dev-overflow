@@ -36,6 +36,7 @@
     ]
   },
   "ignorePatterns": ["components/ui/**"],
+  // override for no undef when using global.d.ts
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
