@@ -11,11 +11,12 @@ import { cn } from "@/lib/utils";
 
 export default function NavLinks({
   isMobileNav = false,
+  userId,
 }: {
   isMobileNav?: boolean;
+  userId?: string;
 }) {
   const pathName = usePathname();
-  const userId = 1;
 
   return (
     <>
