@@ -34,6 +34,7 @@ async function action<T>({
   }
 
   let session: Session | null = null;
+
   if (authorize) {
     session = await auth();
 
