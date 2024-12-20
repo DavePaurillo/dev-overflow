@@ -1,7 +1,7 @@
 "use client";
 
 import { AuthForm } from "@/components/forms/AuthForm";
-import { singUpWithCredentials } from "@/lib/actions/auth.action";
+import { signUpWithCredentials } from "@/lib/actions/auth.action";
 import { SignUpSchema } from "@/lib/validations";
 
 export default function SignUp() {
@@ -16,7 +16,7 @@ export default function SignUp() {
           name: "",
           username: "",
         }}
-        onSubmit={singUpWithCredentials}
+        onSubmit={signUpWithCredentials}
       />
     </div>
   );
