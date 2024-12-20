@@ -27,8 +27,10 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "files.exclude": {
     "**/.vscode": true,
-    "**/node_modules": true,
     "**/.next": true,
+    // "**/.git": false,
+    "**/node_modules": true,
     "next-env.d.ts": true
+    // "**/components.json": true
   }
 }
