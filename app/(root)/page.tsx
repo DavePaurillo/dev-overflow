@@ -5,62 +5,23 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
-
-const questions = [
-  {
-    _id: "1",
-    title: "How to learn react",
-    tags: [
-      { _id: "1", name: "react" },
-      { _id: "2", name: "javascript" },
-    ],
-    author: {
-      _id: "1",
-      name: "John Doe",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    upVotes: 10,
-    answers: 5,
-    views: 100,
-    createdAt: new Date("2023-09-01"),
-  },
-  {
-    _id: "2",
-    title: "How to learn JavaScript",
-    tags: [
-      { _id: "1", name: "javascript" },
-      { _id: "2", name: "javascript" },
-    ],
-    author: {
-      _id: "1",
-      name: "John Doe",
-      image:
-        "https://images.unsplash.com/photo-1515734674582-29010bb37906?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    upVotes: 10,
-    answers: 5,
-    views: 100,
-    createdAt: new Date("2021-09-01"),
-  },
-];
+import { getQuestions } from "@/lib/actions/question.action";
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 async function Home({ searchParams }: SearchParams) {
-  const { query = "", filter = "" } = await searchParams;
+  const { page, pageSize, query, filter } = await searchParams;
 
-  const filteredQuestions = questions.filter((question) => {
-    const matchesQuery = question.title
-      .toLowerCase()
-      .includes(query.toLowerCase());
-    const matchesFilter = filter
-      ? question.tags[0].name.toLowerCase() === filter.toLowerCase()
-      : true;
-    return matchesQuery && matchesFilter;
+  const { success, data, error } = await getQuestions({
+    page: Number(page) || 1,
+    pageSize: Number(pageSize) || 10,
+    query: query || "",
+    filter: filter || "",
   });
+
+  const { questions } = data || {};
 
   return (
     <>
@@ -80,11 +41,25 @@ async function Home({ searchParams }: SearchParams) {
         />
       </section>
       <HomeFilter />
-      <div className="mt-10 flex w-full flex-col gap-6">
-        {filteredQuestions.map((question) => {
-          return <QuestionCard key={question._id} question={question} />;
-        })}
-      </div>
+      {success ? (
+        <div className="mt-10 flex w-full flex-col gap-6">
+          {questions && questions.length > 0 ? (
+            questions.map((question) => {
+              return <QuestionCard key={question._id} question={question} />;
+            })
+          ) : (
+            <div className="mt-10 flex w-full items-center justify-center">
+              <p className="text-dark400_light700">No questions found</p>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="mt-10 flex w-full items-center justify-center">
+          <p className="text-dark400_light700">
+            {error?.message || "Something went wrong"}
+          </p>
+        </div>
+      )}
     </>
   );
 }
