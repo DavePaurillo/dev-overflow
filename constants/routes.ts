@@ -2,15 +2,14 @@ const ROUTES = {
   HOME: "/",
   SIGN_IN: "/sign-in",
   SIGN_UP: "/sign-up",
+  ASK_QUESTION: "/ask-a-question",
   COMUNITY: "/community",
   COLLECTION: "/collection",
+  TAGS: "/tags",
   JOBS: "/find-jobs",
-  TAGS: (id: string) => `/tags/${id}`,
-  // TAGS: "/tags",
   PROFILE: (id: string) => `/profile/${id}`,
-  // PROFILE: "/profile",
   QUESTION: (id: string) => `/questions/${id}`,
-  ASK_QUESTION: "/ask-a-question",
+  TAG: (id: string) => `/tags/${id}`,
 };
 
 export default ROUTES;
