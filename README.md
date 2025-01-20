@@ -5,7 +5,7 @@
   <h3 align="center">DevOverflow</h3>
 </div>
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![DevOverflow][product-screenshot]
 
 <!-- ABOUT THE PROJECT -->
 
@@ -40,6 +40,6 @@ Will add usage details once I have a working version of the site.
 
 Email: paurillo.dave@gmail.com
 
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://github.com/user-attachments/assets/4de8d031-0cf5-496d-9883-5c470d93c01c
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
